@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Elegant Blue Wedding</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin:0;
+  font-family:'Poppins',sans-serif;
+  background:#f0f9ff;
+  overflow-x:hidden;
+}
+
+.opening {
+  position:fixed;
+  inset:0;
+  background:linear-gradient(#1e3a8a,#60a5fa);
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  color:white;
+  z-index:999;
+}
+
+.opening button{
+  padding:12px 25px;
+  border:none;
+  border-radius:10px;
+  background:white;
+  color:#1e3a8a;
+  cursor:pointer;
+}
+
+header{
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  background:url('https://images.unsplash.com/photo-1506744038136-46273834b3fb') center/cover;
+  color:white;
+  text-align:center;
+}
+
+header h1{
+  font-family:'Playfair Display',serif;
+  font-size:55px;
+}
+
+.section{
+  padding:60px 20px;
+  text-align:center;
+}
+
+.card{
+  background:white;
+  margin:20px auto;
+  padding:30px;
+  border-radius:20px;
+  max-width:420px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.1);
+}
+
+.gallery{
+  display:flex;
+  gap:15px;
+  overflow-x:auto;
+}
+
+.gallery img{
+  height:220px;
+  border-radius:15px;
+}
+
+.button{
+  display:inline-block;
+  padding:12px 25px;
+  background:#2563eb;
+  color:white;
+  border-radius:10px;
+  text-decoration:none;
+}
+
+.countdown{
+  font-size:20px;
+  margin-top:10px;
+}
+
+.flower{
+  position:fixed;
+  top:-10px;
+  font-size:20px;
+  animation:fall linear infinite;
+}
+
+@keyframes fall{
+  to{transform:translateY(100vh);opacity:0}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="opening" id="open">
+  <h2>Undangan Pernikahan</h2>
+  <p>Kepada Yth. Tamu Undangan</p>
+  <button onclick="start()">Buka Undangan</button>
+</div>
+
+<header>
+  <h1>Andi & Siti</h1>
+  <p>12 Desember 2026</p>
+  <div class="countdown" id="count"></div>
+</header>
+
+<div class="section">
+
+<div class="card">
+  <h2>Akad</h2>
+  <p>08.00 WIB - Masjid Al-Ikhlas</p>
+</div>
+
+<div class="card">
+  <h2>Resepsi</h2>
+  <p>11.00 WIB - Gedung Serbaguna</p>
+</div>
+
+<div class="card">
+  <h2>Galeri</h2>
+  <div class="gallery">
+    <img src="https://images.unsplash.com/photo-1520962917960-6b8b4c0b6b79">
+    <img src="https://images.unsplash.com/photo-1490750967868-88aa4486c946">
+    <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6">
+  </div>
+</div>
+
+<div class="card">
+  <a class="button" href="https://maps.google.com">Lokasi</a>
+  <br><br>
+  <a class="button" href="https://wa.me/6281234567890">RSVP</a>
+</div>
+
+</div>
+
+<script>
+function start(){
+  document.getElementById('open').style.display='none';
+  music.play();
+}
+
+var music=new Audio('https://www.bensound.com/bensound-music/bensound-romantic.mp3');
+music.loop=true;
+
+// countdown
+var target=new Date('Dec 12, 2026 08:00:00').getTime();
+setInterval(()=>{
+  var now=new Date().getTime();
+  var d=target-now;
+  var days=Math.floor(d/(1000*60*60*24));
+  document.getElementById('count').innerHTML=days+' hari lagi';
+},1000);
+
+// flower effect
+setInterval(()=>{
+  let f=document.createElement('div');
+  f.className='flower';
+  f.innerHTML='🌸';
+  f.style.left=Math.random()*100+'vw';
+  f.style.animationDuration=(3+Math.random()*5)+'s';
+  document.body.appendChild(f);
+  setTimeout(()=>f.remove(),8000);
+},500);
+</script>
+
+</body>
+</html>
